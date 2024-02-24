@@ -375,7 +375,7 @@ public class ApiConfig {
         }
         // 直播源
         liveChannelGroupList.clear();           //修复从后台切换重复加载频道列表
-        String liveURL = "http://shenlan8020.cc:1778/WWlist.txt";
+        String liveURL = Hawk.get(HawkConfig.LIVE_URL, "http://shenlan8020.cc:1778/WWlist.txt");
         //String epgURL  = Hawk.get(HawkConfig.EPG_URL, "");
 
         String liveURL_final = null;
