@@ -100,10 +100,10 @@ public class ApiConfig {
                 content = new String(Base64.decode(content, Base64.DEFAULT));
             }
             if (content.startsWith("2423")) {
-                String data = content.substring(content.indexOf("2324") + 4， content.length() - 26);
+                String data = content.substring(content.indexOf("2324") + 4, content.length() - 26);
                 content = new String(AES.toBytes(content)).toLowerCase();
-                String key = AES.rightPadding(content.substring(content.indexOf("$#") + 2， content.indexOf("#$"))， "0"， 16);
-                String iv = AES.rightPadding(content.substring(content.length() - 13)， "0"， 16);
+                String key = AES.rightPadding(content.substring(content.indexOf("$#") + 2, content.indexOf("#$")), "0", 16);
+                String iv = AES.rightPadding(content.substring(content.length() - 13), "0", 16);
                 json = AES.CBC(data, key, iv);
             }else if (configKey !=null && !AES.isJson(content)) {
                 json = AES.ECB(content, configKey);
@@ -127,7 +127,7 @@ public class ApiConfig {
         return "".getBytes();
     }
 
-    public void loadConfig(boolean useCache， LoadConfigCallback callback， Activity activity) {
+    public void loadConfig(boolean useCache, LoadConfigCallback callback, Activity activity) {
         String apiUrl = Hawk.get(HawkConfig.API_URL, "http://shenlan8020.cc:4567/sub/0");
         if (apiUrl.isEmpty()) {
             callback.error("-1");
@@ -143,7 +143,7 @@ public class ApiConfig {
                 th.printStackTrace();
             }
         }
-        String TempKey = null， configUrl = ""， pk = ";pk;";
+        String TempKey = null, configUrl = "", pk = ";pk;";
         if (apiUrl.contains(pk)) {
             String[] a = apiUrl.split(pk);
             TempKey = a[1];
@@ -163,9 +163,9 @@ public class ApiConfig {
         }
         String configKey = TempKey;
         OkGo.<String>get(configUrl)
-                。headers("User-Agent"， userAgent)
-                。headers("Accept"， requestAccept)
-                。execute(new AbsCallback<String>() {
+                .headers("User-Agent", userAgent)
+                .headers("Accept", requestAccept)
+                .execute(new AbsCallback<String>() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         try {
