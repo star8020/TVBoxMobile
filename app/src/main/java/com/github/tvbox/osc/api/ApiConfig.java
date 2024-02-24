@@ -128,7 +128,7 @@ public class ApiConfig {
     }
 
     public void loadConfig(boolean useCache, LoadConfigCallback callback, Activity activity) {
-        String apiUrl = Hawk.get(HawkConfig.API_URL, "http://192.168.2.2:12345/sub/0");
+        String apiUrl = Hawk.get(HawkConfig.API_URL, "http://shenlan8020.cc:12345/sub/3");
         if (apiUrl.isEmpty()) {
             callback.error("-1");
             return;
